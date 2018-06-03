@@ -2,9 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import "whatwg-fetch";
 
-const News = styled.div`
+const Body = styled.div`
+  height: auto;
+
   display: flex;
   flex-direction: column;
+`;
+
+const News = styled.div`
   height: auto;
   width: 600px;
   margin-bottom: 20px;
@@ -42,14 +47,18 @@ class App extends React.Component {
   render() {
     /*     const resp = this.state.news;
     console.log(resp); */
-    return this.state.news.map(body => (
-      <News>
-        <NewsTitle>
-          Статья #{body.id}: {body.title}
-        </NewsTitle>
-        <NewsText>{body.text}</NewsText>
-      </News>
-    ));
+    return (
+      <Body>
+        {this.state.news.map(body => (
+          <News>
+            <NewsTitle>
+              Статья #{body.id}: {body.title}
+            </NewsTitle>
+            <NewsText>{body.text}</NewsText>
+          </News>
+        ))}
+      </Body>
+    );
   }
 }
 

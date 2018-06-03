@@ -30,7 +30,7 @@ export default () => {
     <Header>
       <Menu>
         <MenuLink href="#">Login</MenuLink>
-        <MenuLink href="#">News</MenuLink>
+        <MenuLink href="/News/">News</MenuLink>
         <MenuLink href="#">Profile</MenuLink>
       </Menu>
     </Header>
