@@ -9,16 +9,14 @@ const Header = styled.header`
 `;
 
 const Menu = styled.div`
+  width: 100%;
   height: 80px;
-  text-align: right;
-  position: absolute;
-  top: 6%;
-  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const MenuLink = styled.a`
-  height: 80px;
-  text-align: right;
   text-decoration: none;
   margin-right: 25px;
   font-size: 20px;
@@ -29,8 +27,9 @@ export default () => {
   return (
     <Header>
       <Menu>
-        <MenuLink href="#">Login</MenuLink>
-        <MenuLink href="/News/">News</MenuLink>
+        <MenuLink href="/">Logo</MenuLink>
+        <MenuLink href="/login">Login</MenuLink>
+        <MenuLink href="/news">News</MenuLink>
         <MenuLink href="#">Profile</MenuLink>
       </Menu>
     </Header>

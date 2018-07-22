@@ -4,7 +4,6 @@ import "whatwg-fetch";
 
 const Body = styled.div`
   height: auto;
-
   display: flex;
   flex-direction: column;
 `;
@@ -19,13 +18,19 @@ const News = styled.div`
   margin-right: auto;
 `;
 
-const NewsTitle = styled.p``;
+const NewsTitle = styled.p`
+  font-style: italic;
+  color: darkred;
+  text-align: center;
+`;
 
-const NewsText = styled.p``;
+const NewsText = styled.p`
+  text-align: center;
+`;
 
 const requestURL = "https://mysterious-reef-29460.herokuapp.com/api/v1/news";
 
-class App extends React.Component {
+class News1 extends React.Component {
   constructor(props) {
     super(props);
     this.state = { news: [] };
@@ -50,7 +55,7 @@ class App extends React.Component {
     return (
       <Body>
         {this.state.news.map(body => (
-          <News>
+          <News key={body.id}>
             <NewsTitle>
               Статья #{body.id}: {body.title}
             </NewsTitle>
@@ -62,4 +67,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default News1;
