@@ -27,7 +27,7 @@ export default () => {
   return (
     <Header>
       <Menu>
-        <MenuLink href="/">Logo</MenuLink>
+        <MenuLink href="/">Home</MenuLink>
         <MenuLink href="/login">Login</MenuLink>
         <MenuLink href="/news">News</MenuLink>
         <MenuLink href="#">Profile</MenuLink>
