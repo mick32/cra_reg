@@ -63,14 +63,6 @@ export default class LoginForm extends React.Component {
     this.setState({ pass: e.target.value });
   }
 
-  login = e => {
-    if (this.state.login === login && this.state.pass === password) {
-      this.setState({ isLogin: true });
-      this.props.updateData(this.state.isLogin);
-      e.preventDefault();
-    }
-  };
-
   handleSubmit(event) {
     if (this.state.login === login && this.state.pass === password) {
       this.setState({ isLogin: true });
@@ -83,8 +75,6 @@ export default class LoginForm extends React.Component {
   }
 
   render() {
-    const ddt = this.state;
-    console.log(ddt);
     if (this.state.isLogin) {
       return <Redirect to="/news/" />;
     }
