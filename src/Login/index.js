@@ -42,7 +42,7 @@ const Button = styled.button`
   color: #000;
 `;
 
-class LoginForm extends React.Component {
+export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -74,7 +74,6 @@ class LoginForm extends React.Component {
   handleSubmit(event) {
     if (this.state.login === login && this.state.pass === password) {
       this.setState({ isLogin: true });
-      alert("Hello " + this.state.login);
       event.preventDefault();
     } else {
       this.setState({ isLogin: false });
@@ -86,6 +85,9 @@ class LoginForm extends React.Component {
   render() {
     const ddt = this.state;
     console.log(ddt);
+    if (this.state.isLogin) {
+      return <Redirect to="/news/" />;
+    }
     return (
       <Main>
         <Form onSubmit={this.handleSubmit}>
@@ -100,30 +102,9 @@ class LoginForm extends React.Component {
             placeholder="Password"
             onChange={this.handlePassChange}
           />
-          <Button type="submit" onClick={this.login}>
-            Log in
-          </Button>
+          <Button type="submit">Log in</Button>
         </Form>
       </Main>
     );
-  }
-}
-
-export default class Login extends React.Component {
-  state = {
-    isLoggin: false
-  };
-
-  updateData = value => {
-    this.setState({ isLoggin: value });
-  };
-
-  render() {
-    const redirect = this.state.isLoggin;
-    console.log(redirect + " новый стейт");
-    if (redirect) {
-      return <Redirect to="/news/" />;
-    }
-    return <LoginForm updateData={this.updateData} />;
   }
 }
