@@ -1,42 +1,20 @@
 import React from "react";
-import styled from "styled-components";
 import "whatwg-fetch";
 
-const Body = styled.div`
-  height: auto;
-  display: flex;
-  flex-direction: column;
-`;
-
-const News = styled.div`
-  height: auto;
-  width: 600px;
-  margin-bottom: 20px;
-  border: 1px solid;
-  background: #f7f6f6;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
-const NewsTitle = styled.p`
-  font-style: italic;
-  color: darkred;
-  text-align: center;
-`;
-
-const NewsText = styled.p`
-  text-align: center;
-`;
+import { Body, Container, NewsTitle, NewsText, Loader } from "./styles";
 
 const requestURL = "https://mysterious-reef-29460.herokuapp.com/api/v1/news";
 
-class News1 extends React.Component {
+class News extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { news: [] };
+    this.state = {
+      news: [],
+      isLoad: false
+    };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.fetchData();
   }
 
@@ -44,27 +22,30 @@ class News1 extends React.Component {
     fetch(requestURL)
       .then(res => res.json(), err => err.message)
       .then(info => {
-        /* console.log(info); */
-        this.setState({ news: info.data });
+        this.setState({ news: info.data, isLoad: true });
       });
   };
 
   render() {
-    /*     const resp = this.state.news;
-    console.log(resp); */
+    const { news, isLoad } = this.state;
+
+    if (!isLoad) {
+      return <Loader />;
+    }
+
     return (
       <Body>
-        {this.state.news.map(body => (
-          <News key={body.id}>
+        {news.map(body => (
+          <Container key={body.id}>
             <NewsTitle>
               Статья #{body.id}: {body.title}
             </NewsTitle>
             <NewsText>{body.text}</NewsText>
-          </News>
+          </Container>
         ))}
       </Body>
     );
   }
 }
 
-export default News1;
+export default News;

@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { Redirect } from "react-router";
 
-const login = "admin";
-const password = "12345";
+const adminLogin = "admin";
+const adminPassword = "123";
 
 const Main = styled.div`
   display: flex;
@@ -45,39 +45,45 @@ const Button = styled.button`
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handlePassChange = this.handlePassChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       isLogin: false,
       login: "",
-      pass: ""
+      password: ""
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handlePassChange = this.handlePassChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({ login: e.target.value });
+  handleChange({ target: { value } }) {
+    this.setState({ login: value });
   }
 
-  handlePassChange(e) {
-    this.setState({ pass: e.target.value });
+  handlePassChange({ target: { value } }) {
+    this.setState({ password: value });
   }
 
   handleSubmit(event) {
-    if (this.state.login === login && this.state.pass === password) {
+    event.preventDefault();
+
+    const { login, password } = this.state;
+
+    if (login === adminLogin && password === adminPassword) {
       this.setState({ isLogin: true });
-      event.preventDefault();
     } else {
       this.setState({ isLogin: false });
       alert("Логин неверный");
-      event.preventDefault();
     }
   }
 
   render() {
-    if (this.state.isLogin) {
+    const { isLogin } = this.state;
+
+    if (isLogin) {
       return <Redirect to="/news/" />;
     }
+
     return (
       <Main>
         <Form onSubmit={this.handleSubmit}>
